@@ -42,7 +42,9 @@ module.exports = React.createClass({
     var styles = {
       floatedContainer: {
       },
-      h3: {
+      orSpan: {
+        paddingRight: '8px',
+        paddingLeft: '4px'
       }
     };
 
@@ -61,6 +63,8 @@ module.exports = React.createClass({
 
           <div className="buttons">
             {button}
+            <span style={styles.orSpan}>or</span>
+            <RaisedButton label="Try a Demo"onClick={this.props.handleDemoButtonClick} />
           </div>
         </div>
 

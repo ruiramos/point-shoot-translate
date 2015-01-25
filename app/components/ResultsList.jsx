@@ -7,8 +7,6 @@ var ResultsList = React.createClass({
       var resultsArray = [this.props.result];
       resultsArray = resultsArray.concat(this.props.translations || []);
 
-      console.log(this.props.result, this.props.translations, resultsArray, this.props.loading)
-
       var results = resultsArray.map(function(result, i){
         var classes = 'row ' + (i===0 ? 'row-primary' : '');
         if(!result.text) return '';

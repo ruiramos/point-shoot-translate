@@ -40,6 +40,25 @@ var AppComponent = React.createClass({
     }
   },
 
+  handleDemoButtonClick: function(){
+    var pics = ['cat', 'headphones', 'redstripe'],
+        that = this;
+
+    pics = pics.map(el => {
+      return './images/' + el + '.jpg'
+    });
+
+    do {
+      var pic = pics[Math.floor(Math.random()*pics.length)];
+    } while(pic === this.refs.imageContainer.getDOMNode().src);
+
+    this.refs.imageContainer.getDOMNode().onload = function(){
+      that.getFlux().actions.postImage(localBase64(that.refs.imageContainer.getDOMNode()));
+    }
+
+    this.refs.imageContainer.getDOMNode().src = pic;
+  },
+
   handlePhotoChanged: function(e){
     var files = event.target.files,
         file,
@@ -93,7 +112,9 @@ var AppComponent = React.createClass({
     return (
       <div>
         <Loader loading={this.state.images.loading} />
-        <Hero simulateInputClick={this.simulateInputClick} />
+        <Hero
+          simulateInputClick={this.simulateInputClick}
+          handleDemoButtonClick={this.handleDemoButtonClick} />
         <SnapButton ref="snap" handlePhotoChanged={this.handlePhotoChanged}/>
         <div style={styles.h4Container}>
           <h4 style={styles.h4}>Grab your mobile and take a photo to get started!</h4>

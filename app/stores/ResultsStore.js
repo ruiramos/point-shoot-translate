@@ -11,7 +11,9 @@ module.exports = Fluxxor.createStore({
       constants.LOAD_RESULTS, this.onLoadResults,
       constants.RESULTS_LOADED, this.onResultsLoaded,
       constants.LOADING_TRANSLATIONS, this.onLoadingTranslations,
-      constants.TRANSLATIONS_LOADED, this.onTranslationsLoaded
+      constants.TRANSLATIONS_LOADED, this.onTranslationsLoaded,
+
+      constants.POST_IMAGE, this.onNewImagePosted
     );
   },
 
@@ -34,6 +36,12 @@ module.exports = Fluxxor.createStore({
   onTranslationsLoaded: function(payload){
     this.loading = false;
     this.translations = payload;
+    this.emit('change');
+  },
+
+  onNewImagePosted: function(){
+    this.result = {};
+    this.translations = [];
     this.emit('change');
   },
 
