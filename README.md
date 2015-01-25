@@ -1,7 +1,7 @@
 # ss15-baliteam
 Point/Shoot/Translate is an experiment with computer vision and machine translation.
 
-The ideia was to create a web app that would allow a user to know how something's called in different languages just by using their phones and taking a picture (or uploading one, if they're using a computer and not a phone).
+The ideia was to create a web app that would allow a user to know how something's called in different languages just by using their phones and taking a picture (or uploading one, if they're using a computer).
 
 The system is working as a static webapp and was built for the Static Showdown 2015 hackathon.
 
