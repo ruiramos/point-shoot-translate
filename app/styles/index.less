@@ -61,6 +61,11 @@
     }
   }
 
+  h3 {
+    margin-bottom: 12px;
+    padding-top: 6px;
+  }
+
   img.subject {
     transition: -webkit-filter 0.75s ease-in 0.25s, opacity 1s ease-out;
     will-change: -webkit-filter, opacity;
@@ -86,6 +91,7 @@
   .table {
     transform: translate(-75px, 0px);
     opacity: 1;
+    .row {min-width:350px;}
   }
 
   img.subject {
@@ -113,10 +119,7 @@
 .loader {
   position: absolute;
   top:75px;
-  width:300px;
-  height:300px;
   left:50%;
-  margin-left:-150px;
   z-index:1000;
 }
 
@@ -144,9 +147,8 @@
     }
 
     span.lang {
-      color: #ccc;
+      color: #c3c3c3;
       font-size:0.9em;
-      text-transform: italic;
       padding-left:5px;
     }
   }
@@ -174,7 +176,7 @@
     }
 
     h1 {
-      padding-top: 10px;
+      padding-top: 0px;
       font-size: 40px;
     }
 

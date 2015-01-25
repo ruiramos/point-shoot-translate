@@ -49,7 +49,7 @@ var AppComponent = React.createClass({
         file = files[0];
     }
 
-    $('body, html').scrollTop(0);
+    this.scrollToTop(true);
 
     imageToBase64(file, function(data){
       that.refs.imageContainer.getDOMNode().src = data;
@@ -59,6 +59,14 @@ var AppComponent = React.createClass({
 
   simulateInputClick: function(){
     this.refs.snap.triggerButton();
+  },
+
+  scrollToTop: function(instant){
+    if(instant)
+      $('body, html').scrollTop(0);
+    else
+      $("html, body").animate({ scrollTop: 0 });
+
   },
 
   render: function() {
@@ -79,10 +87,9 @@ var AppComponent = React.createClass({
       tryAgain: {
         margin: '40px auto',
         textAlign: 'center',
-        display: (this.state.results.loading ? 'none' : 'block')
+        display: (this.state.results.loading ? 'block' : 'block')
       }
     };
-
     return (
       <div>
         <Loader loading={this.state.images.loading} />
@@ -103,7 +110,6 @@ var AppComponent = React.createClass({
             <RaisedButton label="Try again!" onClick={this.scrollToTop} />
           </div>
         </div>
-
         <img style={styles.img} src='' ref='imageContainer' />
       </div>
     )

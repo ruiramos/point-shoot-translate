@@ -21,10 +21,16 @@ module.exports = React.createClass({
           Cerveja <span className="lang">(Portuguese)</span>
         </div>
         <div className="row">
-          Cerveja <span className="lang">(Portuguese)</span>
+          La cerveza <span className="lang">(Spanish)</span>
         </div>
         <div className="row">
-          Cerveja <span className="lang">(Portuguese)</span>
+          пиво <span className="lang">(Russian)</span>
+        </div>
+       <div className="row">
+          bier <span className="lang">(Dutch)</span>
+        </div>
+        <div className="row">
+          เบียร์ <span className="lang">(Thai)</span>
         </div>
       </div>
     );
@@ -37,8 +43,6 @@ module.exports = React.createClass({
       floatedContainer: {
       },
       h3: {
-        marginBottom: '6px',
-        paddingTop: '6px'
       }
     };
 
