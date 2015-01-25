@@ -6,6 +6,14 @@
 
 // --
 
+body, html {
+  height: 100%;
+}
+
+body, #app {
+  overflow-x: hidden;
+}
+
 #hero {
   min-height: 550px;
   background:#efefef;
@@ -158,7 +166,27 @@
   width:40%;
 }
 
+.footer {
+  position: fixed;
+  padding:3px 20px;
+  font-size:0.925em;
+  font-weight: 300;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #2a2a2d;
+  color: #eee;
+  a {
+    color: #ccc;
+  }
+  z-index:1050;
+}
+
 @media all and(max-width:800px){
+  .mui-touch-ripple {
+    display:none;
+  }
+
   .loader {
     position: absolute;
     margin-left: 50%;
@@ -219,6 +247,9 @@
         opacity: 1;
       }
     }
+  }
+  .footer {
+    position: static;
   }
 
   .result-list {

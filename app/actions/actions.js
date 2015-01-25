@@ -16,6 +16,16 @@ var Actions = {
     });
   },
 
+  fakePostImage: function(link){
+    this.dispatch(constants.POST_IMAGE);
+
+    this.dispatch(constants.IMAGE_POSTED, {
+      body: {data: {link: link}}
+    });
+
+    Actions.getImageTags.bind(this)(link);
+  },
+
   getImageTags: function(url){
     var that = this,
         theWord;

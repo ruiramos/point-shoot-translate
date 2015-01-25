@@ -2,6 +2,7 @@ var React = require('react'),
     SnapButton = require('./SnapButton'),
     PhotoContainer = require('./PhotoContainer'),
     Loader = require('./Loader'),
+    Footer = require('./Footer'),
     ResultsList = require('./ResultsList'),
     localBase64 = require('../helpers/localBase64'),
     imageToBase64 = require('../helpers/imageBase64'),
@@ -13,6 +14,13 @@ var React = require('react'),
     Hero = require('./Hero');
 
 var DEBUG = 0;
+
+var imgurLinks = {
+  'cat': 'http://i.imgur.com/vtz60G2.jpg',
+  'headphones': 'http://i.imgur.com/rWq3pGl.jpg',
+  'redstripe': 'http://i.imgur.com/nuLtjEZ.jpg',
+  'soup': 'http://i.imgur.com/KYJoDnV.jpg'
+};
 
 var AppComponent = React.createClass({
   mixins: [FluxMixin, StoreWatchMixin('ImagesStore', 'ResultsStore')],
@@ -41,22 +49,20 @@ var AppComponent = React.createClass({
   },
 
   handleDemoButtonClick: function(){
-    var pics = ['cat', 'headphones', 'redstripe'],
+    var pics = ['cat', 'headphones', 'redstripe', 'soup'],
         that = this;
 
-    pics = pics.map(el => {
-      return './images/' + el + '.jpg'
-    });
+    var pic = pics[Math.floor(Math.random()*pics.length)];
 
-    do {
-      var pic = pics[Math.floor(Math.random()*pics.length)];
-    } while(pic === this.refs.imageContainer.getDOMNode().src);
+    console.log(pic, imgurLinks[pic])
 
-    this.refs.imageContainer.getDOMNode().onload = function(){
-      that.getFlux().actions.postImage(localBase64(that.refs.imageContainer.getDOMNode()));
-    }
+    this.getFlux().actions.fakePostImage(imgurLinks[pic]);
 
-    this.refs.imageContainer.getDOMNode().src = pic;
+    // this.refs.imageContainer.getDOMNode().onload = function(){
+    //   that.getFlux().actions.postImage(localBase64(that.refs.imageContainer.getDOMNode()));
+    // }
+
+    // this.refs.imageContainer.getDOMNode().src = pic;
   },
 
   handlePhotoChanged: function(e){
@@ -81,10 +87,12 @@ var AppComponent = React.createClass({
   },
 
   scrollToTop: function(instant){
-    if(instant)
-      $('body, html').scrollTop(0);
-    else
+    if(instant){
+      $('html, body').scrollTop(0);
+      $(window).scrollTop(0);
+    } else{
       $("html, body").animate({ scrollTop: 0 });
+    }
 
   },
 
@@ -95,10 +103,12 @@ var AppComponent = React.createClass({
       },
       h4Container: {
         textAlign: 'center',
+        padding: '0 20px'
       },
       h4: {
         color: '#aaa',
-        marginBottom: '40px',
+        marginBottom: '0px',
+        fontSize: '24px'
       },
       resultDiv: {
         display: (this.state.images.imageUrl ? 'block' : 'none')
@@ -107,6 +117,11 @@ var AppComponent = React.createClass({
         margin: '40px auto',
         textAlign: 'center',
         display: (this.state.results.loading ? 'block' : 'block')
+      },
+      pCenter: {
+        textAlign: 'center',
+        color: '#aaa',
+        fontSize:'1em'
       }
     };
     return (
@@ -118,6 +133,7 @@ var AppComponent = React.createClass({
         <SnapButton ref="snap" handlePhotoChanged={this.handlePhotoChanged}/>
         <div style={styles.h4Container}>
           <h4 style={styles.h4}>Grab your mobile and take a photo to get started!</h4>
+          <h5 style={styles.pCenter}>For better results make sure your subject is isolated, centered and well lit.</h5>
         </div>
 
         <div style={styles.resultDiv}>
@@ -132,6 +148,7 @@ var AppComponent = React.createClass({
           </div>
         </div>
         <img style={styles.img} src='' ref='imageContainer' />
+        <Footer />
       </div>
     )
   }

@@ -1,6 +1,9 @@
 var React = require('react'),
     Fluxxor = require('fluxxor'),
-    RouterMixin = require('react-mini-router').RouterMixin;
+    RouterMixin = require('react-mini-router').RouterMixin,
+    injectTapEventPlugin = require("react-tap-event-plugin");
+
+injectTapEventPlugin();
 
 var AppComponent = require('./app/components/AppComponent');
 

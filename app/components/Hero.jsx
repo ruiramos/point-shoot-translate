@@ -59,7 +59,7 @@ module.exports = React.createClass({
             Point. Shoot. <br/>
             <span className="strk">Beer.</span> Translate!
           </h1>
-          <h3 style={styles.h3}>So that's how you say it in Thai!</h3>
+          <h3 style={styles.h3}>So thaaat's how you say it in Thai!</h3>
 
           <div className="buttons">
             {button}
