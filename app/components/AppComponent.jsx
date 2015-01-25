@@ -105,7 +105,7 @@ var AppComponent = React.createClass({
       h4Container: {
         textAlign: 'center',
         padding: '0 20px',
-        marginBottom: '10px'
+        marginBottom: '40px'
       },
       h4: {
         color: '#aaa',
