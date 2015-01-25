@@ -25,7 +25,7 @@ var ResultsList = React.createClass({
         var loading = (<div className="row row-loading">Loading translations...</div>);
     }
 
-    if(!results && !this.props.loading){
+    if(!Object.keys(this.props.result).length && !this.props.loading){
       var results = (<div className="row row-empty">No results, sorry. :(</div>);
     }
 
