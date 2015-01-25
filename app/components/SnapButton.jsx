@@ -4,7 +4,6 @@ var React = require('react'),
 
 var SnapButton = React.createClass({
   triggerButton: function(){
-    console.log('asd', this.refs.fileInput.getDOMNode())
     this.refs.fileInput.getDOMNode().click();
   },
 

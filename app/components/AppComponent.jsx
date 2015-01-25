@@ -1,6 +1,7 @@
 var React = require('react'),
     SnapButton = require('./SnapButton'),
     PhotoContainer = require('./PhotoContainer'),
+    Loader = require('./Loader'),
     ResultsList = require('./ResultsList'),
     localBase64 = require('../helpers/localBase64'),
     imageToBase64 = require('../helpers/imageBase64'),
@@ -18,6 +19,7 @@ var AppComponent = React.createClass({
 
   getInitialState: function(){
     return {};
+
   },
 
  getStateFromFlux: function() {
@@ -47,6 +49,8 @@ var AppComponent = React.createClass({
         file = files[0];
     }
 
+    $('body, html').scrollTop(0);
+
     imageToBase64(file, function(data){
       that.refs.imageContainer.getDOMNode().src = data;
       that.getFlux().actions.postImage(data);
@@ -54,7 +58,6 @@ var AppComponent = React.createClass({
   },
 
   simulateInputClick: function(){
-    console.log(this.refs.snap);
     this.refs.snap.triggerButton();
   },
 
@@ -62,20 +65,44 @@ var AppComponent = React.createClass({
     var styles = {
       img: {
         visibility: 'hidden'
+      },
+      h4Container: {
+        textAlign: 'center',
+      },
+      h4: {
+        color: '#aaa',
+        marginBottom: '40px',
+      },
+      resultDiv: {
+        display: (this.state.images.imageUrl ? 'block' : 'none')
+      },
+      tryAgain: {
+        margin: '40px auto',
+        textAlign: 'center',
+        display: (this.state.results.loading ? 'none' : 'block')
       }
     };
 
     return (
       <div>
+        <Loader loading={this.state.images.loading} />
         <Hero simulateInputClick={this.simulateInputClick} />
-        <h3 className="subtitle">some subtitle will go here lalala asdanfsrf asdsada</h3>
-        <p>{this.state.images.loading ? 'Loading...' : ''}</p>
         <SnapButton ref="snap" handlePhotoChanged={this.handlePhotoChanged}/>
-        <PhotoContainer
-          imageUrl={this.state.images.imageUrl}/>
-        <ResultsList
-          loading={this.state.results.loading}
-          results={this.state.results.results} />
+        <div style={styles.h4Container}>
+          <h4 style={styles.h4}>Grab your mobile and take a photo to get started!</h4>
+        </div>
+
+        <div style={styles.resultDiv}>
+          <PhotoContainer
+            imageUrl={this.state.images.imageUrl} />
+          <ResultsList
+            loading={this.state.results.loading}
+            translations={this.state.results.translations}
+            result={this.state.results.result} />
+          <div style={styles.tryAgain}>
+            <RaisedButton label="Try again!" onClick={this.scrollToTop} />
+          </div>
+        </div>
 
         <img style={styles.img} src='' ref='imageContainer' />
       </div>

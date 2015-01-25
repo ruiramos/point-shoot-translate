@@ -16,7 +16,7 @@ watchifyArgs.extensions = ['.js', '.jsx'];
 
 var bundler = watchify(browserify('./app.jsx', watchifyArgs));
 
-bundler.transform(reactify);
+bundler.transform(reactify, {'es6': true});
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 bundler.on('update', bundle); // on any dep update, runs the bundler
@@ -59,4 +59,4 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('default', ['serve', 'js', 'less', 'watch']);
+gulp.task('default', ['js', 'less', 'watch']);

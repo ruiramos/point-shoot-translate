@@ -31,11 +31,14 @@ module.exports = React.createClass({
 
     var button = isMobile ?
       (<RaisedButton label="Take a Photo" primary={true} onClick={this.props.simulateInputClick} />) :
-      (<RaisedButton label="Upload from your computer" onClick={this.props.simulateInputClick} />);
+      (<RaisedButton label="Upload from your computer" primary={true} onClick={this.props.simulateInputClick} />);
 
     var styles = {
       floatedContainer: {
-        float: 'left'
+      },
+      h3: {
+        marginBottom: '6px',
+        paddingTop: '6px'
       }
     };
 
@@ -45,24 +48,24 @@ module.exports = React.createClass({
 
     return (
       <div id="hero" className={this.state.go ? 'go' : ''}>
-        <div className="bg">
-          <div style={styles.floatedContainer}>
-            <h1>
-              Point. Shoot. <br/>
-              <span className="strk">Beer.</span> Translate!
-            </h1>
-            <h3>Bespoke translating services</h3>
-          </div>
-
-          <ReactCSSTransitionGroup transitionName="fadein">
-            {table}
-          </ReactCSSTransitionGroup>
+        <div className="floated-container" style={styles.floatedContainer}>
+          <h1>
+            Point. Shoot. <br/>
+            <span className="strk">Beer.</span> Translate!
+          </h1>
+          <h3 style={styles.h3}>So that's how you say it in Thai!</h3>
 
           <div className="buttons">
             {button}
           </div>
-
         </div>
+
+        <ReactCSSTransitionGroup transitionName="fadein">
+          {table}
+        </ReactCSSTransitionGroup>
+
+        <img className="subject" src="/images/redstripe.jpg" style={styles.img} />
+
       </div>
     );
   }

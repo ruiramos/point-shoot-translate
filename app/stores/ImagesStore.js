@@ -14,6 +14,7 @@ module.exports = Fluxxor.createStore({
 
   onPostImage: function(){
     this.loading = true;
+    this.imageUrl = '';
     this.emit('change');
   },
 

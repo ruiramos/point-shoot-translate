@@ -7,23 +7,49 @@
 // --
 
 #hero {
-  height: 300px;
-  //background:@light-blue-200;
+  min-height: 550px;
+  background:#efefef;
+  box-shadow: inset 0 -3px 2px 0 rgba(0,0,0,0.05);
+  padding:60px 0;
+  overflow: auto;
+  position: relative;
   //border-bottom:2px solid #eee;
 
-  .bg {
-    background: url(/images/red-stripe.png);
-    background-repeat: no-repeat;
-    background-position: 75% 0;
-    height: 100%;
-    background-size: contain;
+  // .bg {
+  //   background: url(/images/redstripe.jpg);
+  //   background-repeat: no-repeat;
+  //   background-position: 75% 0;
+  //   height: 100%;
+  //   background-size: contain;
 
-    padding-left:60px;
+  //   padding-left:60px;
+  // }
+
+  .floated-container {
+    float: left;
+    padding: 0 60px;
   }
+
+.table {
+  position: absolute;
+  display: inline-block;
+
+  transition: transform 0.75s ease-out 1s, opacity 0.5s linear 1s;
+  will-change: opacity, transform;
+
+  transform: translate(0,0);
+
+  right:20%;
+  z-index:100;
+
+  margin-top:35px;
+  vertical-align: top;
+  opacity: 0;
+}
 
   h1 {
     display: inline-block;
-    padding-top:100px;
+    padding-top:40px;
     vertical-align: top;
     line-height: 1.25em;
     //margin-left:60px;
@@ -35,54 +61,43 @@
     }
   }
 
+  img.subject {
+    transition: -webkit-filter 0.75s ease-in 0.25s, opacity 1s ease-out;
+    will-change: -webkit-filter, opacity;
+    -webkit-filter: blur(6px);
+    opacity: 0;
 
-  .table {
+    position: absolute;
+    max-width: 300px;
     display: inline-block;
-    border-radius: 4px;
-    border:1px solid #ddd;
+    margin-left:-100px;
+    margin-top: -25px;
+    right:5%;
+    z-index:150;
 
-    transition: margin-left 5s ease-out, margin-left 200ms ease-out;
-    will-change: opacity, margin-left;
 
-    margin-left:500px;
-    opacity: 0.5;
-
-    //margin-left:300px;
-    margin-top:65px;
-
-    .row {
-      padding:10px 20px;
-      min-width:275px;
-      background: white;
-      border-bottom:1px solid #ddd;
-
-      &.row-primary {
-        background: @indigo-A400;
-        color: white;
-        font-size:1.2em;
-        font-weight:500;
-      }
-
-      span.lang {
-        color: #ccc;
-        font-size:0.9em;
-        text-transform: italic;
-        padding-left:5px;
-      }
-    }
+    border: 25px solid white;
+    border-bottom: 65px solid white;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
   }
 }
 
 #hero.go {
   .table {
-    margin-left:400px;
+    transform: translate(-75px, 0px);
+    opacity: 1;
+  }
+
+  img.subject {
+    -webkit-filter: blur(0px);
     opacity: 1;
   }
 }
 
 .subtitle {
   display:block;
-  width:540px;
+  width:50%;
+  text-align: center;
   margin:10px auto;
   color: #ccc;
   border-bottom:1px solid #eee;
@@ -92,5 +107,119 @@
   clear: both;
   .mui-raised-button {
     margin:0 5px 0 0;
+  }
+}
+
+.loader {
+  position: absolute;
+  top:75px;
+  width:300px;
+  height:300px;
+  left:50%;
+  margin-left:-150px;
+  z-index:1000;
+}
+
+.backdrop {
+  position: absolute;
+  top:0;right:0;left:0;bottom:0;
+  background:rgba(0,0,0,0.6);
+  z-index: 999;
+}
+
+.table {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+
+  .row {
+    padding:10px 20px;
+    min-width:300px;
+    background: white;
+    border-bottom:1px solid #ddd;
+
+    &.row-primary {
+      background: @indigo-A400;
+      color: white;
+      font-size:1.2em;
+      font-weight:500;
+    }
+
+    span.lang {
+      color: #ccc;
+      font-size:0.9em;
+      text-transform: italic;
+      padding-left:5px;
+    }
+  }
+}
+
+.result-list {
+  width:40%;
+}
+
+@media all and(max-width:800px){
+  .loader {
+    position: absolute;
+    margin-left: 50%;
+    top: 100px;
+    left: 0;
+  }
+
+  #hero {
+    padding-top: 40px;
+    padding-bottom: 60px;
+
+    .floated-container {
+      float: none;
+      padding: 0 30px !important;
+    }
+
+    h1 {
+      padding-top: 10px;
+      font-size: 40px;
+    }
+
+    h3 {
+      font-size:18px;
+      padding-top: 0 !important;
+    }
+
+    .table {
+      transition: bottom 750ms ease-out 2s, opacity 750ms 2s;
+      will-change: bottom;
+      margin-top: 0;
+      bottom: 10%;
+      opacity: 0;
+    }
+
+    img.subject {
+      width:50%;
+      margin-top:40px;
+      position: static;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    &.go {
+      .table {
+        //transform: translate(0, 50px);
+        transition: bottom 750ms ease-out 2.5s, opacity 750ms 2.5s;
+        will-change: bottom;
+        bottom:4%;
+        opacity: 1;
+        width:90%;
+        left:5%;
+        right:5%;
+      }
+
+      img.subject {
+        -webkit-filter: blur(0px);
+        opacity: 1;
+      }
+    }
+  }
+
+  .result-list {
+    width:80%;
   }
 }

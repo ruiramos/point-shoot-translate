@@ -1,5 +1,6 @@
 var ImgurApi = require('../helpers/api').ImgurApi,
     AlchemyApi = require('../helpers/api').AlchemyApi,
+    TranslationApi = require('../helpers/api').TranslationApi,
     constants = require('../constants/constants');
 
 var Actions = {
@@ -16,11 +17,29 @@ var Actions = {
   },
 
   getImageTags: function(url){
-    var that = this;
+    var that = this,
+        theWord;
+
     this.dispatch(constants.LOAD_RESULTS);
 
     AlchemyApi.getImageTags(url, function(results){
-      that.dispatch(constants.RESULTS_LOADED, results);
+      theWord = (results.imageKeywords && results.imageKeywords instanceof Array ?
+        results.imageKeywords[0] : results.imageKeywords);
+
+      that.dispatch(constants.RESULTS_LOADED, theWord || {});
+
+      if(theWord){
+        Actions.getTranslation.bind(that)(theWord);
+      }
+    });
+  },
+
+  getTranslation: function(word){
+    var that = this;
+    this.dispatch(constants.LOADING_TRANSLATIONS);
+
+    TranslationApi.translate(word.text, ['pt', 'es', 'ru', 'nl', 'th'], function(results){
+      that.dispatch(constants.TRANSLATIONS_LOADED, results);
     });
   }
 };

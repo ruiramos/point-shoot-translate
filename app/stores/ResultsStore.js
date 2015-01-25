@@ -3,12 +3,15 @@ var Fluxxor = require('fluxxor'),
 
 module.exports = Fluxxor.createStore({
   initialize: function() {
-    this.results = {};
+    this.result = {};
+    this.translations = [];
     this.loading = false;
 
     this.bindActions(
       constants.LOAD_RESULTS, this.onLoadResults,
-      constants.RESULTS_LOADED, this.onResultsLoaded
+      constants.RESULTS_LOADED, this.onResultsLoaded,
+      constants.LOADING_TRANSLATIONS, this.onLoadingTranslations,
+      constants.TRANSLATIONS_LOADED, this.onTranslationsLoaded
     );
   },
 
@@ -19,14 +22,26 @@ module.exports = Fluxxor.createStore({
 
   onResultsLoaded: function(payload) {
     this.loading = false;
-    this.results = payload;
+    this.result = payload;
+    this.emit('change');
+  },
+
+  onLoadingTranslations: function(){
+    this.loading = true;
+    this.emit('change');
+  },
+
+  onTranslationsLoaded: function(payload){
+    this.loading = false;
+    this.translations = payload;
     this.emit('change');
   },
 
   getState: function(){
     return {
+      translations: this.translations,
       loading: this.loading,
-      results: this.results
+      result: this.result
     };
   }
 });
