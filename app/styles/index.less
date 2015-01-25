@@ -1,0 +1,96 @@
+@import "node_modules/material-ui/src/less/scaffolding.less";
+@import "node_modules/less-grid-system/src/grid.less";
+//Define a custom less file to override any variables defined in scaffolding.less
+
+@import "node_modules/material-ui/src/less/components.less";
+
+// --
+
+#hero {
+  height: 300px;
+  //background:@light-blue-200;
+  //border-bottom:2px solid #eee;
+
+  .bg {
+    background: url(/images/red-stripe.png);
+    background-repeat: no-repeat;
+    background-position: 75% 0;
+    height: 100%;
+    background-size: contain;
+
+    padding-left:60px;
+  }
+
+  h1 {
+    display: inline-block;
+    padding-top:100px;
+    vertical-align: top;
+    line-height: 1.25em;
+    //margin-left:60px;
+    //color: white;
+    opacity: 1;
+
+    .strk {
+      text-decoration: line-through;
+    }
+  }
+
+
+  .table {
+    display: inline-block;
+    border-radius: 4px;
+    border:1px solid #ddd;
+
+    transition: margin-left 5s ease-out, margin-left 200ms ease-out;
+    will-change: opacity, margin-left;
+
+    margin-left:500px;
+    opacity: 0.5;
+
+    //margin-left:300px;
+    margin-top:65px;
+
+    .row {
+      padding:10px 20px;
+      min-width:275px;
+      background: white;
+      border-bottom:1px solid #ddd;
+
+      &.row-primary {
+        background: @indigo-A400;
+        color: white;
+        font-size:1.2em;
+        font-weight:500;
+      }
+
+      span.lang {
+        color: #ccc;
+        font-size:0.9em;
+        text-transform: italic;
+        padding-left:5px;
+      }
+    }
+  }
+}
+
+#hero.go {
+  .table {
+    margin-left:400px;
+    opacity: 1;
+  }
+}
+
+.subtitle {
+  display:block;
+  width:540px;
+  margin:10px auto;
+  color: #ccc;
+  border-bottom:1px solid #eee;
+}
+
+.buttons {
+  clear: both;
+  .mui-raised-button {
+    margin:0 5px 0 0;
+  }
+}

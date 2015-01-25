@@ -1,0 +1,44 @@
+{
+  "name": "ss15-baliteam",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-js": "watchify -d -t [ reactify --es6 ] --extension=.js --extension=.jsx app.jsx -o dist/bundle.js",
+    "watch-css": "catw -c 'lessc -' './app/styles/index.less' -o ./dist/bundle.css -v",
+    "watch": "npm run watch-js & npm run watch-css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/staticshowdown/ss15-baliteam.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/staticshowdown/ss15-baliteam/issues"
+  },
+  "homepage": "https://github.com/staticshowdown/ss15-baliteam",
+  "dependencies": {
+    "browserify": "~8.1.1",
+    "reactify": "~1.0.0",
+    "react": "~0.12.2",
+    "watchify": "~2.2.1",
+    "async": "~0.9.0",
+    "superagent": "~0.18.2",
+    "fluxxor": "~1.5.1",
+    "react-mini-router": "~1.0.0",
+    "immutable": "~3.6.2",
+    "less-grid-system": "0.0.1",
+    "gulp": "~3.8.10",
+    "vinyl-buffer": "~1.0.0",
+    "vinyl-source-stream": "~1.0.0",
+    "gulp-sourcemaps": "~1.3.0",
+    "gulp-util": "~3.0.2",
+    "ismobilejs": "~0.3.5"
+  },
+  "devDependencies": {
+    "browser-sync": "~1.9.1",
+    "gulp-less": "~2.0.1"
+  }
+}
