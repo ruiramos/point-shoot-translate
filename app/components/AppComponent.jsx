@@ -19,7 +19,10 @@ var imgurLinks = {
   'cat': 'http://i.imgur.com/vtz60G2.jpg',
   'headphones': 'http://i.imgur.com/rWq3pGl.jpg',
   'redstripe': 'http://i.imgur.com/nuLtjEZ.jpg',
-  'soup': 'http://i.imgur.com/KYJoDnV.jpg'
+  'soup': 'http://i.imgur.com/KYJoDnV.jpg',
+  'wine': 'http://i.imgur.com/5LZcwCo.jpg',
+  'guitar': 'http://i.imgur.com/25v2m1V.jpg',
+  'mantis': 'http://i.imgur.com/oAqSAYL.jpg'
 };
 
 var AppComponent = React.createClass({
@@ -49,12 +52,10 @@ var AppComponent = React.createClass({
   },
 
   handleDemoButtonClick: function(){
-    var pics = ['cat', 'headphones', 'redstripe', 'soup'],
+    var pics = Object.keys(imgurLinks),
         that = this;
 
     var pic = pics[Math.floor(Math.random()*pics.length)];
-
-    console.log(pic, imgurLinks[pic])
 
     this.getFlux().actions.fakePostImage(imgurLinks[pic]);
 
@@ -103,7 +104,8 @@ var AppComponent = React.createClass({
       },
       h4Container: {
         textAlign: 'center',
-        padding: '0 20px'
+        padding: '0 20px',
+        marginBottom: '10px'
       },
       h4: {
         color: '#aaa',
